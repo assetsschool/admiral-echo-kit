@@ -1,0 +1,7 @@
+{
+    "server": {
+        "host": "example.com",
+        "port": "8080",
+        "secure": false
+    }
+}

@@ -50,11 +50,11 @@ const retrieveResponse = input => {
 
 const HackIntentHandler = {
     canHandle(handlerInput) {
-        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
-            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'HackIntent';
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest';
+            // && Alexa.getIntentName(handlerInput.requestEnvelope) === 'HackIntent';
     },
     async handle(handlerInput) {
-        const speakOutput = await retrieveResponse(handlerInput);
+        const speakOutput = await retrieveResponse(Alexa.getIntentName(handlerInput.requestEnvelope));
         return handlerInput.responseBuilder
             .speak(speakOutput)
             .getResponse();

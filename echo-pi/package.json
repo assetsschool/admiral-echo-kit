@@ -1,0 +1,17 @@
+{
+  "name": "echopi",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:server": "node server/server.js"
+  },
+  "author": "Iain Moncrief",
+  "license": "WTFPL",
+  "dependencies": {
+    "async-threading": "^1.0.2",
+    "node-fetch": "^2.6.0",
+    "ws": "^7.2.1"
+  }
+}
