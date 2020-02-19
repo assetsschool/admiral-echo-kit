@@ -19,7 +19,7 @@ const defaultCoroutines = { }
 defaultCoroutines['HackIntent'] = () => makeMessage('Okie Dokie Artichokie!')
 
 defaultCoroutines['ArbitraryIntent'] = () => makeMessage([...Array(100).keys()].map( n => n + 1 ).toString().replace(/,/g, ' '))
-defaultCoroutines['WhereIsIntent'] = () => makeMessage('Not sure where to find that...')
+// defaultCoroutines['WhereIsIntent'] = () => makeMessage('Not sure where to find that...')
 
 const userCoroutines = require('./coroutines/include')
 
