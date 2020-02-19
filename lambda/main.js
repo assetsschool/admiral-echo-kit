@@ -1,7 +1,7 @@
 const Alexa = require('ask-sdk-core');
 const https = require('https');
 
-const endpoint = 'untitled-rhmzeakh840t.runkit.sh';
+const endpoint = 'developer.grape-juice.org';
 
 const parseIntent = stri => stri.replace(/Intent/g, '');
 
