@@ -6,7 +6,7 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
-const port = 3000
+const port = 8080
 app.use(bodyParser.json())
 
 
@@ -14,12 +14,16 @@ app.use(bodyParser.json())
 
 const makeMessage = (message) => { return { message: message } }
 
-const coroutines = { }
+const defaultCoroutines = { }
 
-coroutines['HackIntent'] = () => makeMessage('Okie Dokie Artichokie!')
+defaultCoroutines['HackIntent'] = () => makeMessage('Okie Dokie Artichokie!')
 
-coroutines['ArbitraryIntent'] = () => makeMessage([...Array(100).keys()].map( n => n + 1 ).toString().replace(/,/g, ' '))
-coroutines['WhereIsIntent'] = () => makeMessage('Not sure where to find that...')
+defaultCoroutines['ArbitraryIntent'] = () => makeMessage([...Array(100).keys()].map( n => n + 1 ).toString().replace(/,/g, ' '))
+defaultCoroutines['WhereIsIntent'] = () => makeMessage('Not sure where to find that...')
+
+const userCoroutines = require('./coroutines/include')
+
+const coroutines = { ...defaultCoroutines, ...userCoroutines }
 
 const handle = function (request) {
     const intent = request.data
@@ -27,10 +31,6 @@ const handle = function (request) {
     if (coroutine) return coroutine()
     return makeMessage(`No coroutine found for ${intent}`)
 }
-
-
-
-
 
 app.get('/', (request, response) => response.json({ message: 'Hello World!!!' }))
 
