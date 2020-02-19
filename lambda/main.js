@@ -54,6 +54,9 @@ const HackIntentHandler = {
             // && Alexa.getIntentName(handlerInput.requestEnvelope) === 'HackIntent';
     },
     async handle(handlerInput) {
+        
+        const presenPackageDebug = await retrieveResponse(handlerInput.requestEnvelope);
+        
         const speakOutput = await retrieveResponse(Alexa.getIntentName(handlerInput.requestEnvelope));
         return handlerInput.responseBuilder
             .speak(speakOutput)

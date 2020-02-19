@@ -26,6 +26,7 @@ const userCoroutines = require('./coroutines/include')
 const coroutines = { ...defaultCoroutines, ...userCoroutines }
 
 const handle = function (request) {
+    console.log(request.data)
     const intent = request.data
     const coroutine = coroutines[intent]
     if (coroutine) return coroutine()
