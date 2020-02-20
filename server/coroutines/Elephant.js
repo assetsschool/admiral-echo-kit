@@ -14,6 +14,7 @@ const recall = () => {
 }
 
 const forget = () => {
+    if (memories.length < 1) return echokit.makeMessage('Nothing to forget! :)')
     while (memories.length > 0) {
         memories.pop()
     }
