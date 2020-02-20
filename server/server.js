@@ -28,7 +28,9 @@ const coroutines = { ...defaultCoroutines, ...userCoroutines }
 
 const handle = function (request) {
     console.log(request.data.request['intent'])
+    console.log('-----------')
     const envelope = echokit.makeInputBuffer(request)
+    console.log(envelope)
     const intent = envelope.name
     const coroutine = coroutines[intent]
     if (coroutine) return coroutine(envelope)
