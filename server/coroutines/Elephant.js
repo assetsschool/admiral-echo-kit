@@ -1,4 +1,4 @@
-const echokit = require('../../Echokit')
+const echokit = require('../../EchoKit')
 
 const memories = []
 
