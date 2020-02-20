@@ -7,7 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:server": "node server/server.js",
     "test:server": "node server/server.test.js",
-    "up:server": "sudo node server/server.js"
+    "init:server": "sudo pm2 start server/server.js --name \"EchoApplication\"",
+    "down:server": "sudo pm2 kill",
+    "boot:server": "sudo pm2 restart EchoApplication",
+    "dev:workflow": "git pull"
   },
   "author": "Iain Moncrief",
   "license": "WTFPL",

@@ -10,7 +10,10 @@ const makeInputBuffer = function (envelope) {
     return {
         type: envelope.type,
         time: envelope.timestamp,
-        ...envelope.intent
+        ...envelope.intent,
+        slot: function (name) {
+            return this.slots[name].value
+        }
     }
 }
 

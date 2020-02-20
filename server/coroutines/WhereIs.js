@@ -1,10 +1,10 @@
 const echokit = require('../../EchoKit')
 
-const coroutine = () => {
+const coroutine = (envelope) => {
     
-    // console.log(input/slots)
-    
-    return echokit.makeMessage('Not sure where to find that...')
+    const item = envelope.slot('item')
+
+    return echokit.makeMessage(`Not sure where to find ${item}. Try asking Mr. Pennington.`)
 }
 
 module.exports = coroutine
