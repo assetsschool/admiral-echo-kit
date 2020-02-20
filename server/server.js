@@ -29,7 +29,7 @@ const coroutines = { ...defaultCoroutines, ...userCoroutines }
 const handle = function (request) {
     console.log(request.data.request['intent'])
     const envelope = echokit.makeInputBuffer(request)
-    const intent = envelope.intent.name
+    const intent = envelope.name
     const coroutine = coroutines[intent]
     if (coroutine) return coroutine(envelope)
     return makeMessage(`No coroutine found for ${intent}`)
