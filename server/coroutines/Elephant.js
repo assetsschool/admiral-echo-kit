@@ -4,7 +4,7 @@ const memories = []
 
 const remember = (envelope) => {
     const rememberance = envelope.slot('memory')
-    memories.push(remember)
+    memories.push(rememberance)
     return echokit.makeMessage('Putting it in the ol cranium.')
 }
 
