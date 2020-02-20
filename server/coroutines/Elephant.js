@@ -10,14 +10,18 @@ const remember = (envelope) => {
 
 const recall = () => {
     if (memories.length < 1) return echokit.makeMessage('No memories recorded.')
-    let message = ''
-    for (const memory of memories) {
-        message += `${memory}. `
+    return echokit.makeMessageFromQueue(memories)
+}
+
+const forget = () => {
+    while (memories.length > 0) {
+        memories.pop()
     }
-    return echokit.makeMessage(message)
+    return echokit.makeMessage('I have forgotten everything.')
 }
 
 module.exports = {
     remember: remember,
-    recall: recall
+    recall: recall,
+    forget: forget
 }
