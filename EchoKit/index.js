@@ -1,12 +1,20 @@
 const makeMessage = (message) => { return { message: message } }
 
-const inputBuffer = function (data/* slots ...etc */) {
-    this.data = data
-    this.print = function () {
-        console.log(this.data)
+class Dialog {
+    constructor(envelope) {
+        this.envelope = null
+    }
+}
+
+const makeInputBuffer = function (envelope) {
+    return {
+        type: envelope.type,
+        time: envelope.timestamp,
+        ...envelope.intent
     }
 }
 
 module.exports = {
-    makeMessage: makeMessage
+    makeMessage: makeMessage,
+    makeInputBuffer: makeInputBuffer
 }

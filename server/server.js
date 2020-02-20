@@ -2,6 +2,7 @@
 // 
 // Email - iainmoncrief@gmail.com
 
+const echokit = require('../EchoKit')
 
 const express = require('express')
 const app = express()
@@ -26,10 +27,11 @@ const userCoroutines = require('./coroutines/include')
 const coroutines = { ...defaultCoroutines, ...userCoroutines }
 
 const handle = function (request) {
-    console.log(request.data)
-    const intent = request.data
+    console.log(request.data.request['intent'])
+    const envelope = echokit.makeInputBuffer(request)
+    const intent = envelope.intent
     const coroutine = coroutines[intent]
-    if (coroutine) return coroutine()
+    if (coroutine) return coroutine(envelope)
     return makeMessage(`No coroutine found for ${intent}`)
 }
 
