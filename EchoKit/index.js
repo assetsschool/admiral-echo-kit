@@ -1,3 +1,5 @@
+const StorageBlock = require('./StorageBlock')
+
 const makeMessage = (message) => { return { message: message } }
 
 const makeMessageFromQueue = (messages) => {
@@ -25,8 +27,13 @@ const makeInputBuffer = function (envelope) {
     }
 }
 
+const storageBlock = function (name) {
+    return new StorageBlock(name)
+}
+
 module.exports = {
     makeMessage: makeMessage,
     makeInputBuffer: makeInputBuffer,
-    makeMessageFromQueue: makeMessageFromQueue
+    makeMessageFromQueue: makeMessageFromQueue,
+    storageBlock: storageBlock
 }

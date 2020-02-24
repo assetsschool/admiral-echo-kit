@@ -64,3 +64,15 @@ const HackIntentHandler = {
             .getResponse();
     }
 }
+
+const EchoKitIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest';
+    },
+    async handle(handlerInput) {
+        const speakOutput = await retrieveResponse(handlerInput.requestEnvelope);
+        return handlerInput.responseBuilder
+            .speak(speakOutput)
+            .getResponse();
+    }
+}
