@@ -27,7 +27,7 @@ const userCoroutines = require('./coroutines/include')
 const coroutines = { ...defaultCoroutines, ...userCoroutines }
 
 const handle = function (request) {
-    const envelope = echokit.makeInputBuffer(request.data.request)
+    const envelope = echokit.makeInputBuffer(request.data)
     const intent = envelope.name
     const coroutine = coroutines[intent]
     if (coroutine) return coroutine(envelope)

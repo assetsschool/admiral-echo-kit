@@ -10,17 +10,12 @@ const makeMessageFromQueue = (messages) => {
     return makeMessage(message)
 }
 
-class Dialog {
-    constructor(envelope) {
-        this.envelope = null
-    }
-}
-
 const makeInputBuffer = function (envelope) {
     return {
-        type: envelope.type,
-        time: envelope.timestamp,
-        ...envelope.intent,
+        session: envelope.session,
+        type: envelope.request.type,
+        time: envelope.request.timestamp,
+        ...envelope.request.intent, // This function is pretty badass
         slot: function (name) {
             return this.slots[name].value
         }
