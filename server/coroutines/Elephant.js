@@ -1,10 +1,17 @@
 const echokit = require('../../EchoKit')
 
-const memories = []
+const storage = echokit.storageBlock('elephant')
+
+const memories = storage.get('memories') || []
+
+const save = function () {
+    storage.set('memories', memories)
+}
 
 const remember = (envelope) => {
     const rememberance = envelope.slot('memory')
     memories.push(rememberance)
+    save()
     return echokit.makeMessage('Putting it in the ol cranium.')
 }
 
@@ -18,6 +25,7 @@ const forget = () => {
     while (memories.length > 0) {
         memories.pop()
     }
+    save()
     return echokit.makeMessage('I have forgotten everything.')
 }
 

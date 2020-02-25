@@ -1,8 +1,9 @@
 const fs = require('fs')
 
 class StorageBlock {
-    constructor(name) {
+    constructor(name, autosave = true) {
         this.name = name
+        this.autosave = autosave
 
         const directory = process.cwd() + '/.storage_blocks/'
         if (!fs.existsSync(directory)) fs.mkdirSync(directory)
@@ -18,11 +19,7 @@ class StorageBlock {
     
     set(key, value) {
         this.data[key] = value
-        if (this.saveThread) clearTimeout(this.saveThread)
-        this.saveThread = setTimeout( () => {
-            this.save()
-            this.saveThread = null
-        }, 0);
+        if (this.autosave) this.save()
     }
 
     get(key) {
@@ -32,6 +29,14 @@ class StorageBlock {
     }
 
     save() {
+        if (this.saveThread) clearTimeout(this.saveThread)
+        this.saveThread = setTimeout( () => {
+            this.burn()
+            this.saveThread = null
+        }, 0);
+    }
+
+    burn() {
         const data = JSON.stringify(this.data)
         fs.writeFileSync(this.filename, data)
     }
