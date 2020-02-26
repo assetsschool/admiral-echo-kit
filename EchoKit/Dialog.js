@@ -45,8 +45,12 @@ class Dialog {
 
         const stage = this.session
         const event = this.dialogQueue[this.stage - 1]
+
+        // Increments session stage
+        this.session['stage'] += 1
         this.storage.save()
-        return echokit.makeMessage(shouldEndSession = this.shouldQuit())
+        const message = echokit.makeMessage(event.message)
+        return message
     }
 }
 
