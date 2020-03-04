@@ -17,14 +17,22 @@ const main = async () => {
 
     await doc.loadInfo(); // loads document properties and worksheets
     console.log(doc.title);
-    await doc.updateProperties({ title: 'renamed doc' });
+    // await doc.updateProperties({ title: 'renamed doc' });
 
     const sheet = doc.sheetsByIndex[0]; // or use doc.sheetsById[id]
     console.log(sheet.title);
     console.log(sheet.rowCount);
 
     // adding / removing sheets
-    const newSheet = await doc.addSheet({ title: 'hot new sheet!' });
+    // const newSheet = await doc.addSheet({ title: 'hot new sheet!' });
     // await newSheet.delete();
+
+    await sheet.loadCells()
+    const cell = sheet.getCell(0, 0)
+
+    setInterval( async () => {
+        cell.value = Math.random() * 10
+        sheet.saveUpdatedCells().catch(e => console.log(e))
+    }, 500)
 }
 main().catch(e => console.log(e))
